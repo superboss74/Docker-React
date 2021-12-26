@@ -1,0 +1,12 @@
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# I'll leave this next line here even though docker-composer is already doing this for me through it's volume settings
+COPY . .
+# What if in the future I don't want to use docker-composer
+
+CMD ["npm", "run", "start"]
