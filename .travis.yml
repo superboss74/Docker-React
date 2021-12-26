@@ -7,3 +7,15 @@ before_install:
 
 script:
   - docker run -e CI=true humeji/docker-react npm run test -- --watchAll=false
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-west-1"
+  app: "Docker-react"
+  env: "Dockerreact-env"
+  bucket_name: "elasticbeanstalk-us-west-1-591330224397"
+  backet_path: "Docker-react"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
